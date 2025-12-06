@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AttendanceSessions">
+          <Key>
+            <PropertyRef Name="SessionID" />
+          </Key>
+          <Property Name="SessionID" Type="int" Nullable="false" />
+          <Property Name="CircleID" Type="int" />
+          <Property Name="TeacherID" Type="int" />
+          <Property Name="SessionDate" Type="date" />
+          <Property Name="SessionTime" Type="time" Precision="7" />
+          <Property Name="EducationalLevel" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Circles">
+          <Key>
+            <PropertyRef Name="CircleID" />
+          </Key>
+          <Property Name="CircleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MosqueName" Type="nvarchar(max)" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="EducationalLevel" Type="nvarchar" MaxLength="100" />
+          <Property Name="CircleLevel" Type="nvarchar" MaxLength="50" />
+          <Property Name="CircleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentsCount" Type="int" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="MemorizationRecords">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="bigint" Nullable="false" />
+          <Property Name="SessionID" Type="int" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="AttendanceStatus" Type="nvarchar" MaxLength="20" />
+          <Property Name="NewMemSuraFrom" Type="nvarchar" MaxLength="100" />
+          <Property Name="NewMemAyahFrom" Type="int" />
+          <Property Name="NewMemSuraTo" Type="nvarchar" MaxLength="100" />
+          <Property Name="NewMemPages" Type="int" />
+          <Property Name="NewMemMistakes" Type="int" />
+          <Property Name="RevSuraForm" Type="nvarchar" MaxLength="100" />
+          <Property Name="RevPages" Type="int" />
+          <Property Name="RevMistakes" Type="int" />
+          <Property Name="Notes" Type="text" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CircleID" Type="int" />
+          <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="GuardianPhone" Type="nvarchar" MaxLength="20" />
+          <Property Name="EducationalLevel" Type="varchar" MaxLength="100" />
+          <Property Name="phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="addrass" Type="nvarchar(max)" />
+          <Property Name="StudentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="255" />
+          <Property Name="UserNationnallD" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Circles_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Circles" Type="Self.Circles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Circles">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="AttendanceSessions" EntityType="Self.AttendanceSessions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Circles" EntityType="Self.Circles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemorizationRecords" EntityType="Self.MemorizationRecords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Circles_Users" Association="Self.FK_Circles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Circles" EntitySet="Circles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AttendanceSessions">
+          <Key>
+            <PropertyRef Name="SessionID" />
+          </Key>
+          <Property Name="SessionID" Type="Int32" Nullable="false" />
+          <Property Name="CircleID" Type="Int32" />
+          <Property Name="TeacherID" Type="Int32" />
+          <Property Name="SessionDate" Type="DateTime" Precision="0" />
+          <Property Name="SessionTime" Type="Time" Precision="7" />
+          <Property Name="EducationalLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Circles">
+          <Key>
+            <PropertyRef Name="CircleID" />
+          </Key>
+          <Property Name="CircleID" Type="Int32" Nullable="false" />
+          <Property Name="CircleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MosqueName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EducationalLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CircleLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentsCount" Type="Int32" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="Circles1" Relationship="Model.FK_Circles_Circles" FromRole="Circles" ToRole="Circles1" />
+          <NavigationProperty Name="Circles2" Relationship="Model.FK_Circles_Circles" FromRole="Circles1" ToRole="Circles" />
+          <NavigationProperty Name="Users" Relationship="Model.FK_Circles_Users" FromRole="Circles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="MemorizationRecords">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int64" Nullable="false" />
+          <Property Name="SessionID" Type="Int32" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="AttendanceStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NewMemSuraFrom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NewMemAyahFrom" Type="Int32" />
+          <Property Name="NewMemSuraTo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NewMemPages" Type="Int32" />
+          <Property Name="NewMemMistakes" Type="Int32" />
+          <Property Name="RevSuraForm" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RevPages" Type="Int32" />
+          <Property Name="RevMistakes" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="StudentName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CircleID" Type="Int32" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GuardianPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EducationalLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="addrass" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UserNationnallD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Circles" Relationship="Model.FK_Circles_Users" FromRole="Users" ToRole="Circles" />
+        </EntityType>
+        <EntityContainer Name="Memorization_Circles_ManagementEntities6" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AttendanceSessions" EntityType="Self.AttendanceSessions" />
+          <EntitySet Name="Circles" EntityType="Self.Circles" />
+          <EntitySet Name="MemorizationRecords" EntityType="Self.MemorizationRecords" />
+          <EntitySet Name="Students" EntityType="Self.Students" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Circles_Circles" Association="Model.FK_Circles_Circles">
+            <End Role="Circles" EntitySet="Circles" />
+            <End Role="Circles1" EntitySet="Circles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Circles_Users" Association="Model.FK_Circles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Circles" EntitySet="Circles" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Circles_Circles">
+          <End Type="Model.Circles" Role="Circles" Multiplicity="1" />
+          <End Type="Model.Circles" Role="Circles1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Circles">
+              <PropertyRef Name="CircleID" />
+            </Principal>
+            <Dependent Role="Circles1">
+              <PropertyRef Name="CircleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Circles_Users">
+          <End Type="Model.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="Model.Circles" Role="Circles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Circles">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Memorization_Circles_ManagementEntities6">
+          <EntitySetMapping Name="AttendanceSessions">
+            <EntityTypeMapping TypeName="Model.AttendanceSessions">
+              <MappingFragment StoreEntitySet="AttendanceSessions">
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="CircleID" ColumnName="CircleID" />
+                <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+                <ScalarProperty Name="SessionDate" ColumnName="SessionDate" />
+                <ScalarProperty Name="SessionTime" ColumnName="SessionTime" />
+                <ScalarProperty Name="EducationalLevel" ColumnName="EducationalLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Circles">
+            <EntityTypeMapping TypeName="Model.Circles">
+              <MappingFragment StoreEntitySet="Circles">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CircleID" ColumnName="CircleID" />
+                <ScalarProperty Name="CircleName" ColumnName="CircleName" />
+                <ScalarProperty Name="MosqueName" ColumnName="MosqueName" />
+                <ScalarProperty Name="EducationalLevel" ColumnName="EducationalLevel" />
+                <ScalarProperty Name="CircleLevel" ColumnName="CircleLevel" />
+                <ScalarProperty Name="StudentsCount" ColumnName="StudentsCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemorizationRecords">
+            <EntityTypeMapping TypeName="Model.MemorizationRecords">
+              <MappingFragment StoreEntitySet="MemorizationRecords">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="AttendanceStatus" ColumnName="AttendanceStatus" />
+                <ScalarProperty Name="NewMemSuraFrom" ColumnName="NewMemSuraFrom" />
+                <ScalarProperty Name="NewMemAyahFrom" ColumnName="NewMemAyahFrom" />
+                <ScalarProperty Name="NewMemSuraTo" ColumnName="NewMemSuraTo" />
+                <ScalarProperty Name="NewMemPages" ColumnName="NewMemPages" />
+                <ScalarProperty Name="NewMemMistakes" ColumnName="NewMemMistakes" />
+                <ScalarProperty Name="RevSuraForm" ColumnName="RevSuraForm" />
+                <ScalarProperty Name="RevPages" ColumnName="RevPages" />
+                <ScalarProperty Name="RevMistakes" ColumnName="RevMistakes" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="Model.Students">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="CircleID" ColumnName="CircleID" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="GuardianPhone" ColumnName="GuardianPhone" />
+                <ScalarProperty Name="EducationalLevel" ColumnName="EducationalLevel" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="addrass" ColumnName="addrass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Model.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="UserNationnallD" ColumnName="UserNationnallD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
