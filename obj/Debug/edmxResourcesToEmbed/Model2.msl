@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Memorization_Circles_ManagementEntities4">
+    <EntitySetMapping Name="AttendanceSessions">
+      <EntityTypeMapping TypeName="Model.AttendanceSessions">
+        <MappingFragment StoreEntitySet="AttendanceSessions">
+          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+          <ScalarProperty Name="CircleID" ColumnName="CircleID" />
+          <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+          <ScalarProperty Name="SessionDate" ColumnName="SessionDate" />
+          <ScalarProperty Name="SessionTime" ColumnName="SessionTime" />
+          <ScalarProperty Name="EducationalLevel" ColumnName="EducationalLevel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Circles">
+      <EntityTypeMapping TypeName="Model.Circles">
+        <MappingFragment StoreEntitySet="Circles">
+          <ScalarProperty Name="CircleID" ColumnName="CircleID" />
+          <ScalarProperty Name="CircleName" ColumnName="CircleName" />
+          <ScalarProperty Name="MosqueName" ColumnName="MosqueName" />
+          <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+          <ScalarProperty Name="SupervisorID" ColumnName="SupervisorID" />
+          <ScalarProperty Name="EducationalLevel" ColumnName="EducationalLevel" />
+          <ScalarProperty Name="CircleLevel" ColumnName="CircleLevel" />
+          <ScalarProperty Name="StudentsCount" ColumnName="StudentsCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemorizationRecords">
+      <EntityTypeMapping TypeName="Model.MemorizationRecords">
+        <MappingFragment StoreEntitySet="MemorizationRecords">
+          <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="AttendanceStatus" ColumnName="AttendanceStatus" />
+          <ScalarProperty Name="NewMemSuraFrom" ColumnName="NewMemSuraFrom" />
+          <ScalarProperty Name="NewMemAyahFrom" ColumnName="NewMemAyahFrom" />
+          <ScalarProperty Name="NewMemSuraTo" ColumnName="NewMemSuraTo" />
+          <ScalarProperty Name="NewMemPages" ColumnName="NewMemPages" />
+          <ScalarProperty Name="NewMemMistakes" ColumnName="NewMemMistakes" />
+          <ScalarProperty Name="RevSuraForm" ColumnName="RevSuraForm" />
+          <ScalarProperty Name="RevPages" ColumnName="RevPages" />
+          <ScalarProperty Name="RevMistakes" ColumnName="RevMistakes" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="Model.Students">
+        <MappingFragment StoreEntitySet="Students">
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="CircleID" ColumnName="CircleID" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="GuardianPhone" ColumnName="GuardianPhone" />
+          <ScalarProperty Name="EducationalLevel" ColumnName="EducationalLevel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Model.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="UserNationnallD" ColumnName="UserNationnallD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

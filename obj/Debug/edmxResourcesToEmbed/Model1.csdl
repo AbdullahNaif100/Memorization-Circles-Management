@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AttendanceSessions">
+    <Key>
+      <PropertyRef Name="SessionID" />
+    </Key>
+    <Property Name="SessionID" Type="Int32" Nullable="false" />
+    <Property Name="CircleID" Type="Int32" />
+    <Property Name="TeacherID" Type="Int32" />
+    <Property Name="SessionDate" Type="DateTime" Precision="0" />
+    <Property Name="SessionTime" Type="Time" Precision="7" />
+    <Property Name="EducationalLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Circles">
+    <Key>
+      <PropertyRef Name="CircleID" />
+    </Key>
+    <Property Name="CircleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MosqueName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="EducationalLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CircleLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CircleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentsCount" Type="Int32" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Circles_Users" FromRole="Circles" ToRole="Users" />
+    <NavigationProperty Name="MemorizationRecords" Relationship="Self.FK_Record_Circle" FromRole="Circles" ToRole="MemorizationRecords" />
+  </EntityType>
+  <EntityType Name="MemorizationRecords">
+    <Key>
+      <PropertyRef Name="RecordID" />
+    </Key>
+    <Property Name="RecordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SessionDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SessionTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="CircleID" Type="Int32" Nullable="false" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="AttendanceStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Circles" Relationship="Self.FK_Record_Circle" FromRole="MemorizationRecords" ToRole="Circles" />
+    <NavigationProperty Name="NewMemorization" Relationship="Self.FK_NewMem_Record" FromRole="MemorizationRecords" ToRole="NewMemorization" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Record_Student" FromRole="MemorizationRecords" ToRole="Students" />
+    <NavigationProperty Name="Revision" Relationship="Self.FK_Revision_Record" FromRole="MemorizationRecords" ToRole="Revision" />
+  </EntityType>
+  <EntityType Name="NewMemorization">
+    <Key>
+      <PropertyRef Name="NewMemID" />
+    </Key>
+    <Property Name="NewMemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RecordID" Type="Int32" Nullable="false" />
+    <Property Name="SuraFrom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AyahFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SuraTo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AyahTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PagesCount" Type="Int32" />
+    <Property Name="Mistakes" Type="Int32" />
+    <NavigationProperty Name="MemorizationRecords" Relationship="Self.FK_NewMem_Record" FromRole="NewMemorization" ToRole="MemorizationRecords" />
+  </EntityType>
+  <EntityType Name="Revision">
+    <Key>
+      <PropertyRef Name="RevisionID" />
+    </Key>
+    <Property Name="RevisionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RecordID" Type="Int32" Nullable="false" />
+    <Property Name="SuraFrom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AyahFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SuraTo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AyahTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PagesCount" Type="Int32" />
+    <Property Name="Mistakes" Type="Int32" />
+    <NavigationProperty Name="MemorizationRecords" Relationship="Self.FK_Revision_Record" FromRole="Revision" ToRole="MemorizationRecords" />
+  </EntityType>
+  <EntityType Name="Students">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CircleID" Type="Int32" />
+    <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="GuardianPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="EducationalLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="addrass" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="MemorizationRecords" Relationship="Self.FK_Record_Student" FromRole="Students" ToRole="MemorizationRecords" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserNationnallD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Circles" Relationship="Self.FK_Circles_Users" FromRole="Users" ToRole="Circles" />
+  </EntityType>
+  <Association Name="FK_Circles_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Circles" Type="Self.Circles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Circles">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Record_Circle">
+    <End Role="Circles" Type="Self.Circles" Multiplicity="1" />
+    <End Role="MemorizationRecords" Type="Self.MemorizationRecords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Circles">
+        <PropertyRef Name="CircleID" />
+      </Principal>
+      <Dependent Role="MemorizationRecords">
+        <PropertyRef Name="CircleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewMem_Record">
+    <End Role="MemorizationRecords" Type="Self.MemorizationRecords" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NewMemorization" Type="Self.NewMemorization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemorizationRecords">
+        <PropertyRef Name="RecordID" />
+      </Principal>
+      <Dependent Role="NewMemorization">
+        <PropertyRef Name="RecordID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Record_Student">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="MemorizationRecords" Type="Self.MemorizationRecords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="MemorizationRecords">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Revision_Record">
+    <End Role="MemorizationRecords" Type="Self.MemorizationRecords" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Revision" Type="Self.Revision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemorizationRecords">
+        <PropertyRef Name="RecordID" />
+      </Principal>
+      <Dependent Role="Revision">
+        <PropertyRef Name="RecordID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Memorization_Circles_ManagementEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AttendanceSessions" EntityType="Self.AttendanceSessions" />
+    <EntitySet Name="Circles" EntityType="Self.Circles" />
+    <EntitySet Name="MemorizationRecords" EntityType="Self.MemorizationRecords" />
+    <EntitySet Name="NewMemorization" EntityType="Self.NewMemorization" />
+    <EntitySet Name="Revision" EntityType="Self.Revision" />
+    <EntitySet Name="Students" EntityType="Self.Students" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_Circles_Users" Association="Self.FK_Circles_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Circles" EntitySet="Circles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Record_Circle" Association="Self.FK_Record_Circle">
+      <End Role="Circles" EntitySet="Circles" />
+      <End Role="MemorizationRecords" EntitySet="MemorizationRecords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewMem_Record" Association="Self.FK_NewMem_Record">
+      <End Role="MemorizationRecords" EntitySet="MemorizationRecords" />
+      <End Role="NewMemorization" EntitySet="NewMemorization" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Record_Student" Association="Self.FK_Record_Student">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="MemorizationRecords" EntitySet="MemorizationRecords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Revision_Record" Association="Self.FK_Revision_Record">
+      <End Role="MemorizationRecords" EntitySet="MemorizationRecords" />
+      <End Role="Revision" EntitySet="Revision" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

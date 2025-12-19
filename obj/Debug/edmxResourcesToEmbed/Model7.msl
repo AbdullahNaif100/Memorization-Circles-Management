@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model2StoreContainer" CdmEntityContainer="Memorization_Circles_ManagementEntities1">
+    <EntitySetMapping Name="AttendanceSessions">
+      <EntityTypeMapping TypeName="Model2.AttendanceSessions">
+        <MappingFragment StoreEntitySet="AttendanceSessions">
+          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+          <ScalarProperty Name="CircleID" ColumnName="CircleID" />
+          <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+          <ScalarProperty Name="SessionDate" ColumnName="SessionDate" />
+          <ScalarProperty Name="SessionTime" ColumnName="SessionTime" />
+          <ScalarProperty Name="EducationalLevel" ColumnName="EducationalLevel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Circles">
+      <EntityTypeMapping TypeName="Model2.Circles">
+        <MappingFragment StoreEntitySet="Circles">
+          <ScalarProperty Name="CircleName" ColumnName="CircleName" />
+          <ScalarProperty Name="MosqueName" ColumnName="MosqueName" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="EducationalLevel" ColumnName="EducationalLevel" />
+          <ScalarProperty Name="CircleLevel" ColumnName="CircleLevel" />
+          <ScalarProperty Name="CircleID" ColumnName="CircleID" />
+          <ScalarProperty Name="StudentsCount" ColumnName="StudentsCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemorizationRecords">
+      <EntityTypeMapping TypeName="Model2.MemorizationRecords">
+        <MappingFragment StoreEntitySet="MemorizationRecords">
+          <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+          <ScalarProperty Name="SessionDate" ColumnName="SessionDate" />
+          <ScalarProperty Name="SessionTime" ColumnName="SessionTime" />
+          <ScalarProperty Name="CircleID" ColumnName="CircleID" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="AttendanceStatus" ColumnName="AttendanceStatus" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewMemorization">
+      <EntityTypeMapping TypeName="Model2.NewMemorization">
+        <MappingFragment StoreEntitySet="NewMemorization">
+          <ScalarProperty Name="NewMemID" ColumnName="NewMemID" />
+          <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+          <ScalarProperty Name="SuraFrom" ColumnName="SuraFrom" />
+          <ScalarProperty Name="AyahFrom" ColumnName="AyahFrom" />
+          <ScalarProperty Name="SuraTo" ColumnName="SuraTo" />
+          <ScalarProperty Name="AyahTo" ColumnName="AyahTo" />
+          <ScalarProperty Name="PagesCount" ColumnName="PagesCount" />
+          <ScalarProperty Name="Mistakes" ColumnName="Mistakes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Revision">
+      <EntityTypeMapping TypeName="Model2.Revision">
+        <MappingFragment StoreEntitySet="Revision">
+          <ScalarProperty Name="RevisionID" ColumnName="RevisionID" />
+          <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+          <ScalarProperty Name="SuraFrom" ColumnName="SuraFrom" />
+          <ScalarProperty Name="AyahFrom" ColumnName="AyahFrom" />
+          <ScalarProperty Name="SuraTo" ColumnName="SuraTo" />
+          <ScalarProperty Name="AyahTo" ColumnName="AyahTo" />
+          <ScalarProperty Name="PagesCount" ColumnName="PagesCount" />
+          <ScalarProperty Name="Mistakes" ColumnName="Mistakes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="Model2.Students">
+        <MappingFragment StoreEntitySet="Students">
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="CircleID" ColumnName="CircleID" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="GuardianPhone" ColumnName="GuardianPhone" />
+          <ScalarProperty Name="EducationalLevel" ColumnName="EducationalLevel" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="addrass" ColumnName="addrass" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Model2.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="UserNationnallD" ColumnName="UserNationnallD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

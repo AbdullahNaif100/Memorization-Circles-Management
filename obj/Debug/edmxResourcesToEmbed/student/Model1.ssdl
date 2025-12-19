@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AttendanceSessions">
+    <Key>
+      <PropertyRef Name="SessionID" />
+    </Key>
+    <Property Name="SessionID" Type="int" Nullable="false" />
+    <Property Name="CircleID" Type="int" />
+    <Property Name="TeacherID" Type="int" />
+    <Property Name="SessionDate" Type="date" />
+    <Property Name="SessionTime" Type="time" Precision="7" />
+    <Property Name="EducationalLevel" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Circles">
+    <Key>
+      <PropertyRef Name="CircleID" />
+    </Key>
+    <Property Name="CircleID" Type="int" Nullable="false" />
+    <Property Name="CircleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MosqueName" Type="nvarchar(max)" />
+    <Property Name="TeacherID" Type="int" />
+    <Property Name="SupervisorID" Type="int" />
+    <Property Name="EducationalLevel" Type="nvarchar" MaxLength="100" />
+    <Property Name="CircleLevel" Type="nvarchar" MaxLength="50" />
+    <Property Name="StudentsCount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MemorizationRecords">
+    <Key>
+      <PropertyRef Name="RecordID" />
+    </Key>
+    <Property Name="RecordID" Type="bigint" Nullable="false" />
+    <Property Name="SessionID" Type="int" />
+    <Property Name="StudentID" Type="int" />
+    <Property Name="AttendanceStatus" Type="nvarchar" MaxLength="20" />
+    <Property Name="NewMemSuraFrom" Type="nvarchar" MaxLength="100" />
+    <Property Name="NewMemAyahFrom" Type="int" />
+    <Property Name="NewMemSuraTo" Type="nvarchar" MaxLength="100" />
+    <Property Name="NewMemPages" Type="int" />
+    <Property Name="NewMemMistakes" Type="int" />
+    <Property Name="RevSuraForm" Type="nvarchar" MaxLength="100" />
+    <Property Name="RevPages" Type="int" />
+    <Property Name="RevMistakes" Type="int" />
+    <Property Name="Notes" Type="text" />
+  </EntityType>
+  <EntityType Name="Students">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="int" Nullable="false" />
+    <Property Name="StudentName" Type="nvarchar" MaxLength="255" />
+    <Property Name="CircleID" Type="int" />
+    <Property Name="NationalID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
+    <Property Name="BirthDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="GuardianPhone" Type="nvarchar" MaxLength="20" />
+    <Property Name="EducationalLevel" Type="varchar" MaxLength="100" />
+    <Property Name="InitialSura" Type="nvarchar" MaxLength="100" />
+    <Property Name="InitialAyah" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserType" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" MaxLength="255" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="255" />
+    <Property Name="UserNationnallD" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="AttendanceSessions" EntityType="Self.AttendanceSessions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Circles" EntityType="Self.Circles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MemorizationRecords" EntityType="Self.MemorizationRecords" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

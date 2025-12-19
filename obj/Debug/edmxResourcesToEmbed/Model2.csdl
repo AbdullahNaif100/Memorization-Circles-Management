@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AttendanceSessions">
+    <Key>
+      <PropertyRef Name="SessionID" />
+    </Key>
+    <Property Name="SessionID" Type="Int32" Nullable="false" />
+    <Property Name="CircleID" Type="Int32" />
+    <Property Name="TeacherID" Type="Int32" />
+    <Property Name="SessionDate" Type="DateTime" Precision="0" />
+    <Property Name="SessionTime" Type="Time" Precision="7" />
+    <Property Name="EducationalLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Circles">
+    <Key>
+      <PropertyRef Name="CircleID" />
+    </Key>
+    <Property Name="CircleID" Type="Int32" Nullable="false" />
+    <Property Name="CircleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MosqueName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TeacherID" Type="Int32" />
+    <Property Name="SupervisorID" Type="Int32" />
+    <Property Name="EducationalLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CircleLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StudentsCount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="MemorizationRecords">
+    <Key>
+      <PropertyRef Name="RecordID" />
+    </Key>
+    <Property Name="RecordID" Type="Int64" Nullable="false" />
+    <Property Name="SessionID" Type="Int32" />
+    <Property Name="StudentID" Type="Int32" />
+    <Property Name="AttendanceStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NewMemSuraFrom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NewMemAyahFrom" Type="Int32" />
+    <Property Name="NewMemSuraTo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NewMemPages" Type="Int32" />
+    <Property Name="NewMemMistakes" Type="Int32" />
+    <Property Name="RevSuraForm" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="RevPages" Type="Int32" />
+    <Property Name="RevMistakes" Type="Int32" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Students">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="StudentName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CircleID" Type="Int32" />
+    <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="GuardianPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="EducationalLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserNationnallD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="Memorization_Circles_ManagementEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AttendanceSessions" EntityType="Self.AttendanceSessions" />
+    <EntitySet Name="Circles" EntityType="Self.Circles" />
+    <EntitySet Name="MemorizationRecords" EntityType="Self.MemorizationRecords" />
+    <EntitySet Name="Students" EntityType="Self.Students" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+  </EntityContainer>
+</Schema>
